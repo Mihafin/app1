@@ -1,0 +1,17 @@
+{
+  "apps" : [{
+    "name"        : "server-worker",
+    "script"      : "./bin/www",
+    "instances"   : 2,
+    "exec_mode"   : "cluster_mode",
+    "merge_logs"  : false,
+    "env": {
+      "NODE_ENV"  : "production",
+      "DEBUG"     : "app:*",
+      "DEBUG_FD"  : "1"
+    },
+    "restart_delay": 4000,
+    "max_memory_restart": "100M",
+    "autorestart": true
+  }]
+}
