@@ -5,7 +5,7 @@ module.exports = function (shipit){
 
     shipit.on('published', function(){
         shipit.remoteCopy("public/js/app/configs/*.*", server_path + "public/js/app/configs/");
-        shipit.remoteCopy("configs/db/database.json", server_path + "configs/db/database.json");
+        shipit.remoteCopy("configs/db/*.*", server_path + "configs/db/");
         console.log("configs uploaded");
     });
 

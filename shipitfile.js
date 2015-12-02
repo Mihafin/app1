@@ -1,5 +1,5 @@
 //usage
-// ./shipit [dev|vk_prod] [deploy|upload_local_changes|restart_server]
+// ./shipit [local|vk_dev] [deploy|upload_local_changes|restart_server]
 
 module.exports = function (shipit) {
     var cur_env = shipit.environment;
