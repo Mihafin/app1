@@ -1,23 +1,16 @@
-define(function(){
-    var CommonApi = function (on_init) {
+define(["app_params"], function(AppParams){
+    var CommonApi = function (on_init, api_prefix) {
         this.on_init = on_init;
-        this.api_params = this.init_params();
+        this.api_params = AppParams.query_params;
         this.user_id = this.get_user_id();
+        this.api_prefix = api_prefix;
     };
 
     CommonApi.prototype = Object.create(Object.prototype);
     CommonApi.prototype.constructor = CommonApi;
 
-    CommonApi.prototype.init_params = function(){
-        return get_url_params();
-    };
-
     CommonApi.prototype.on_api_init = function(){
-        //override and call on_api_init
-    };
-
-    CommonApi.prototype.on_api_init = function(){
-        console.log("api initialization succeeded");
+        console.log(this.api_prefix, "api initialization succeeded");
         this.on_init.call(null);
     };
 

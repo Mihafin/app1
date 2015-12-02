@@ -1,11 +1,11 @@
 define(["app_params", "jquery"],
 function(AppParams, $){
     var ServerQueue = function(){
-        this.server_url = "http://localhost:3001"
+        this.server_url = AppParams.api_config.server_url
     };
 
     ServerQueue.prototype.add_request = function(params){
-        console.log("sdsds=", params);
+        console.log("add_request:", params);
         this.send_post();
     };
 

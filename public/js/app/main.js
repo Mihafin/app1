@@ -1,10 +1,6 @@
 requirejs.config({
     baseUrl: "js/app",
     paths: {
-        //social_api: 'api/vk',
-        social_api: 'api/local',
-
-
         jquery: '../core/jquery.min',
         pixi: '../core/pixi.min',
         i18n: '../core/i18n',

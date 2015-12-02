@@ -21,18 +21,6 @@ CommonUtils.prototype.clear_element = function(obj){
 
 
 //todo move to right place!
-function get_url_params() {
-    var query = location.search.substr(1);
-    var result = {};
-    query.split("&").forEach(function(part) {
-        var item = part.split("=");
-        result[item[0]] = decodeURIComponent(item[1]);
-    });
-    return result;
-}
-
-
-///---------------user_prof
 var UserProfile = function(){
     this.first_name = "";
     this.last_name = "";

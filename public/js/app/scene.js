@@ -7,6 +7,15 @@ function(_, AppParams, Utils, loader_texts, animator){
         this.current_game = null;
         this.animator = animator;
         this.animator.init(this);
+
+        var query = location.search.substr(1);
+        var query_params = {};
+        query.split("&").forEach(function(part) {
+            var item = part.split("=");
+            query_params[item[0]] = decodeURIComponent(item[1]);
+        });
+
+        AppParams.query_params = query_params;
     };
 
     Scene.prototype = Object.create(PIXI.Container.prototype);
@@ -22,13 +31,22 @@ function(_, AppParams, Utils, loader_texts, animator){
 
     Scene.prototype.init_api = function(){
         this.loader.set_text(loader_texts.loading3);
-        requirejs(["social_api"], function(SocialApi){
-            this.api = new SocialApi(this.on_api_init.bind(this));
-            this.api.init_api();
+        requirejs(["api/init"], function(SocialApiInitializer){
+            SocialApiInitializer(function (SocialApi){
+                this.api = new SocialApi(this.on_api_init.bind(this));
+                this.api.init_api();
+            }.bind(this));
         }.bind(this));
     };
 
     Scene.prototype.on_api_init = function () {
+        if (AppParams.api_config.dev){
+            requirejs(["stats"], function () {
+                this.stats = this.init_stat();
+                this.canvas.appendChild(this.stats.domElement);
+            }.bind(this))
+        }
+
         this.api.load_profiles([this.api.user_id], function(result){
             this.api.me = result[0];
             this.loader.set_text(Utils.text.substitute(loader_texts.loading4, this.api.me.first_name));
@@ -71,28 +89,23 @@ function(_, AppParams, Utils, loader_texts, animator){
     Scene.prototype.init_render = function(){
         //PIXI.SCALE_MODES.DEFAULT = PIXI.SCALE_MODES.NEAREST;
         this.renderer = PIXI.autoDetectRenderer(AppParams.width, AppParams.height, {backgroundColor: 0xccccff});
-        var canvas = document.getElementById(AppParams.canvas_id);
-        Utils.common.clear_element(canvas);
-        canvas.appendChild(this.renderer.view);
+        this.canvas = document.getElementById(AppParams.canvas_id);
+        Utils.common.clear_element(this.canvas);
+        this.canvas.appendChild(this.renderer.view);
 
-        var stats = null;
-        if (AppParams.dev){
-            requirejs(["stats"], function () {
-                stats = this.init_stat();
-                canvas.appendChild(stats.domElement);
-            }.bind(this))
-        }
+        this.stats = null;
 
-        animate.call(this);
-        function animate() {
-            if (stats) stats.begin();
+        var animate = function() {
+            if (this.stats) this.stats.begin();
 
             this.animator.update();
             this.renderer.render(this);
 
-            if (stats) stats.end();
+            if (this.stats) this.stats.end();
             requestAnimationFrame(animate.bind(this));
-        }
+        }.bind(this);
+
+        animate();
     };
 
     Scene.prototype.init_stat = function(){

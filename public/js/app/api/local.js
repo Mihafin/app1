@@ -1,7 +1,7 @@
 define(["api/common"], function(CommonApi){
 
     var SocialApi = function (on_init) {
-        CommonApi.call(this, on_init);
+        CommonApi.call(this, on_init, "local");
     };
 
     SocialApi.prototype = Object.create(CommonApi.prototype);
@@ -12,8 +12,7 @@ define(["api/common"], function(CommonApi){
     };
 
     SocialApi.prototype.load_profiles = function(profiles, cb){
-        var profiles = this.local_profiles();
-        //this.cache_profiles(profiles);
+        profiles = this.local_profiles();
         cb.call(null, profiles);
     };
 

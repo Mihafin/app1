@@ -1,7 +1,7 @@
 define(["api/common", "//vk.com/js/api/xd_connection.js?2"], function(CommonApi){
 
     var SocialApi = function (on_init) {
-        CommonApi.call(this, on_init);
+        CommonApi.call(this, on_init, "vk");
     };
 
     SocialApi.prototype = Object.create(CommonApi.prototype);

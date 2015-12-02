@@ -1,4 +1,5 @@
 module.exports = function (shipit){
+    var readline = require('readline');
     var cur_env = shipit.environment;
     var server_path = shipit.config.deployTo + '/current/';
 
