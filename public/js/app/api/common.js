@@ -3,6 +3,10 @@ define(["app_params"], function(AppParams){
         this.on_init = on_init;
         this.api_params = AppParams.query_params;
         this.user_id = this.get_user_id();
+        if (AppParams.api_config.valid_user_ids){
+            if (AppParams.api_config.valid_user_ids.indexOf(this.user_id) == -1)
+                throw "unavailable user!"
+        }
         this.api_prefix = api_prefix;
     };
 
@@ -23,7 +27,7 @@ define(["app_params"], function(AppParams){
     };
 
     CommonApi.prototype.get_user_id = function(){
-        return this.api_params["user_id"];
+        return this.api_params["viewer_id"];
     };
 
     return CommonApi;

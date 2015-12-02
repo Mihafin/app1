@@ -3,6 +3,12 @@ module.exports = function (shipit){
     var cur_env = shipit.environment;
     var server_path = shipit.config.deployTo + '/current/';
 
+    shipit.on('published', function(){
+        shipit.remoteCopy("public/js/app/configs/*.*", server_path + "public/js/app/configs/");
+        shipit.remoteCopy("configs/db/database.json", server_path + "configs/db/database.json");
+        console.log("configs uploaded");
+    });
+
     shipit.task('test', function(){
         console.log("server_path=", server_path, "env=", cur_env);
     });
