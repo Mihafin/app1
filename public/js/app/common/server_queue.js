@@ -11,7 +11,7 @@ function(AppParams, $){
 
     ServerQueue.prototype.send_post = function () {
         $.post(this.server_url + "/users?par1=val1", {par2: "val2"}, function(data){
-            console.log("req_data", data);
+            AppParams.scene.on_request_complete(data);
         }, "text");
     };
 

@@ -2,11 +2,11 @@
   "apps" : [{
     "name"        : "server-worker",
     "script"      : "./bin/www",
-    "instances"   : 2,
+    "instances"   : 1,
     "exec_mode"   : "cluster_mode",
     "merge_logs"  : false,
     "env": {
-      "NODE_ENV"  : "production",
+      "NODE_ENV"  : "vk_dev",
       "DEBUG"     : "app:*",
       "DEBUG_FD"  : "1"
     },

@@ -7,3 +7,4 @@ shipitcfg.js
 configs/db/database.json
 docs
 public/js/app/configs
+configs/api_keys

@@ -16,6 +16,7 @@ function(_, AppParams, Utils, loader_texts, animator){
         });
 
         AppParams.query_params = query_params;
+        AppParams.scene = this;
     };
 
     Scene.prototype = Object.create(PIXI.Container.prototype);
@@ -70,10 +71,18 @@ function(_, AppParams, Utils, loader_texts, animator){
 
     Scene.prototype.load_user_state = function() {
         requirejs(["common/server_queue"], function(ServerQueue){
-            ServerQueue.add_request({});
+            ServerQueue.add_request({cmd: "first_data"});
         });
+    };
 
+    Scene.prototype.on_request_complete = function(result){
+        console.log("on_request_complete", result);
         //this.on_loaded_user_state();
+
+    };
+
+    Scene.prototype.on_request_error = function(error){
+        console.log("on_request_error", error);
     };
 
     Scene.prototype.on_loaded_user_state = function() {
