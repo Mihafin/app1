@@ -1,5 +1,5 @@
 module.exports = function() {
     return {
-        auth: false
+        api: "local_api"
     }
 }();

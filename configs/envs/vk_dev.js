@@ -1,5 +1,5 @@
 module.exports = function() {
     return {
-        auth: true
+        api: "vk_api"
     }
 }();
