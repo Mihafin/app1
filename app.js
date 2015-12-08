@@ -10,6 +10,9 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(logger('tiny'));
 express.app = app;
 
+var ext_funcs = require('./routes/ext_funcs');
+ext_funcs.add_extentions(app);
+
 var users = require('./routes/users');
 var tech = require('./routes/tech');
 var auth = require('./routes/auth');

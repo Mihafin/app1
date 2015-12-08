@@ -2,7 +2,7 @@ var app_params = require('./app_params');
 var api = require('./apis/' + app_params.api);
 
 exports.check = function(req, res, next) {
-    console.log("check auth!", req);
+    console.log("check auth!", req.req_param('user_id'));
     if (api.is_auth_success(req)){
         next();
     }
