@@ -23,6 +23,7 @@ define(["api/common"], function(CommonApi){
         prof.last_name = "Фамилия";
         prof.img50 = "imgs/loader/load_image.png";
         prof.sex = 2;
+        prof.id = 42;
         res.push(prof);
         return res;
     };

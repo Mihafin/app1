@@ -26,4 +26,5 @@ var UserProfile = function(){
     this.last_name = "";
     this.img50 = "";
     this.sex = 0; //1 — женский, 2 — мужской , 0 — пол не указан.
+    this.id = "";
 };

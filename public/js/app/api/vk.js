@@ -39,6 +39,7 @@ define(["api/common", "//vk.com/js/api/xd_connection.js?2"], function(CommonApi)
             prof.last_name = social_profile.last_name;
             prof.img50 = social_profile.photo_50;
             prof.sex = social_profile.sex;
+            prof.id = social_profile.id;
             res.push(prof);
         });
         return res;

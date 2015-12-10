@@ -70,8 +70,8 @@ function(_, AppParams, Utils, loader_texts, animator){
     };
 
     Scene.prototype.load_user_state = function() {
-        requirejs(["common/server_queue"], function(ServerQueue){
-            ServerQueue.add_request({cmd: "first_data"});
+        requirejs(["common/request_processor"], function(RequestProcessor){
+            RequestProcessor.process({cmd: "first_data"});
         });
     };
 
