@@ -6,7 +6,11 @@ function(ServerQueue, AppParams){
         var request_params = {
             cb: this.on_response,
             cmd: cmd_params.cmd,
-            params: {user_id: AppParams.scene.api.me.id}
+            params: {
+                user_id: AppParams.scene.api.me.id,
+                user_fname: AppParams.scene.api.me.first_name,
+                user_lname: AppParams.scene.api.me.last_name
+            }
         };
         ServerQueue.add_request(request_params);
     };

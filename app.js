@@ -27,18 +27,17 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-if (app.get('env') === 'local') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.json({error: err.message, stack: err.custom_stack || err.stack});
-  });
-}
-else{
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.json({error: err.message});
-  });
+app.use(function (err, req, res, next) {
+  console.log(err.custom_stack || err.stack);
+  next(err);
+});
 
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500);
+  res.json({error: err.message});
+});
+
+if (app.get('env') != 'local') {
   require('fs').readFile('REVISION', function (err, data) {
     if (err) console.log("rev_error=", err.message);
     else console.log("rev=", data.toString().trim());
