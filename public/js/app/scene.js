@@ -76,9 +76,24 @@ function(_, AppParams, Utils, loader_texts, animator){
     };
 
     Scene.prototype.on_request_complete = function(result){
-        console.log("on_request_complete", result);
-        //this.on_loaded_user_state();
+        var is_first_request = result.cmd.cmd == "first_data";
+        console.log("on_request_complete", is_first_request, result);
+        if (result.result.level == 0 && is_first_request){
+            this.start_tutorial();
+        }
+        else{
+            //this.on_loaded_user_state();
+        }
+    };
 
+    Scene.prototype.start_tutorial = function(){
+        requirejs(["common/request_processor"], function(RequestProcessor) {
+            RequestProcessor.process({cmd: "tutorial_complete"});
+        });
+    };
+
+    Scene.prototype.on_error = function(){
+        alert("К сожалению, связь с сервером потеряна! Проверьте подключение и перезапустите игру.");
     };
 
     Scene.prototype.on_request_error = function(error){

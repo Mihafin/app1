@@ -19,11 +19,11 @@ define(["api/common"], function(CommonApi){
     SocialApi.prototype.local_profiles = function(cnt){
         var res = [];
         var prof = new UserProfile();
-        prof.first_name = "Вовка2";
-        prof.last_name = "Известный22";
+        prof.first_name = "Дашa부풀리다";
+        prof.last_name = "Surname";
         prof.img50 = "imgs/loader/load_image.png";
         prof.sex = 2;
-        prof.id = 421;
+        prof.id = '666';
         res.push(prof);
         return res;
     };

@@ -5,8 +5,18 @@ var models  = require('../models');
 //var requirejs = require('requirejs');
 //var app_params = requirejs('../public/js/app/app_params');
 
-router.all('/test', function(req, res, next) {
-
+router.all('/tutorial_complete', function(req, res, next) {
+    var user_id = req.req_param('user_id');
+    models.User.with_user(user_id, null, null, function(user){
+        user.level = 1;
+        user.save()
+            .then(function(user){
+                res.json(user.json_data());
+            })
+            .catch(function(error) {
+                next.call(null, error);
+            });
+    }, next);
 });
 
 router.all('/first_data', function(req, res, next) {
