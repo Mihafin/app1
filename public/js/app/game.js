@@ -20,7 +20,7 @@ define(["pixi", "ui/settings", "games/three_match_game", "app_params" ], functio
         this.gui_layer.addChild(this.setting_bar);
         this.addChild(this.gui_layer);
 
-        //this.start_test_game();
+        this.start_test_game();
     };
 
     Game.prototype.start_test_game = function(){

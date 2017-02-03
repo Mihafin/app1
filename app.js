@@ -8,15 +8,13 @@ app.set('env', process.env.NODE_ENV || "local");
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(logger('tiny'));
-express.app = app;
+express.app = app; //use req.app
 
 require('./routes/ext_funcs')(app);
 
 var users = require('./routes/users');
 var tech = require('./routes/tech');
-var auth = require('./routes/auth');
 
-app.use(auth.check);
 app.use('/users', users);
 app.use('/tech', tech);
 

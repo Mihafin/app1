@@ -82,7 +82,7 @@ function(_, AppParams, Utils, loader_texts, animator){
             this.start_tutorial();
         }
         else{
-            //this.on_loaded_user_state();
+            this.on_loaded_user_state();
         }
     };
 
