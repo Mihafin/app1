@@ -7,7 +7,7 @@ function(ServerQueue, AppParams){
         var request_params = {
             cb: this.on_response,
             cmd: cmd_params.cmd,
-            params: { user_id: me.id }
+            params: { user_id: me.id,  auth_key: AppParams.scene.api.api_params.auth_key}
         };
         if (cmd_params.cmd == 'first_data'){
             request_params.params.user_fname = me.first_name;
