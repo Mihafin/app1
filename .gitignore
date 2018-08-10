@@ -6,5 +6,6 @@ node_modules
 shipitcfg.js
 configs/db/database.json
 docs
+nic.ru.ssl.txt
 public/js/app/configs
 configs/api_keys

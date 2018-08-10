@@ -16,13 +16,16 @@ module.exports = function(sequelize, DataTypes) {
                     if (user_id == null || user_id == "" || typeof(user_id) == "undefined"){
                         throw new Error('user_id error!');
                     }
+                    console.log("before findOrInitialize", user_id);
                     this.findOrInitialize({where: {user_id: user_id}})
                         .spread(function(user, initialized) {
+                            console.log("fn=", User.full_name(user_name, user_surname));
                             if (user_name && user_surname) user.name = User.full_name(user_name, user_surname);
                             console.log(user.get({ plain: true }), initialized);
                             cb.call(null, user);
                         })
                         .catch(function(error) {
+                            console.log("error=", error);
                             err_cb.call(null, error);
                         });
                 },

@@ -12,6 +12,7 @@ router.use(function(req, res, next){
     var user_name = req.req_param('user_fname');
     var user_surname = req.req_param('user_lname');
     models.User.with_user(user_id, user_name, user_surname, function(user){
+        console.log("with_user", user);
         req.user = user;
         next();
     }, next);
